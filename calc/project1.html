@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator with If Conditions</title>
+    <style>
+        .background {
+            background-image: url('weathered-blue-page.jpg'); /* Replace with your image file path */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            height: 100vh; /* Make container full height of viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 0%;
+            margin: 0%;
+        }
+        .calculator {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        .calculator input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background-color: #f0f0f0;
+        }
+        .calculator input[type="button"]:hover {
+            background-color: #e0e0e0;
+        }
+        .calculator input[type="text"] {
+            width: calc(100% - 10px);
+            height: 50px;
+            font-size: 28px;
+            text-align: right;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+ <div class="background">    
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <br>
+        <input type="button" value="7" onclick="addToDisplay('7')">
+        <input type="button" value="8" onclick="addToDisplay('8')">
+        <input type="button" value="9" onclick="addToDisplay('9')">
+        <input type="button" value="/" onclick="addToDisplay('/')"><br>
+        
+        <input type="button" value="4" onclick="addToDisplay('4')">
+        <input type="button" value="5" onclick="addToDisplay('5')">
+        <input type="button" value="6" onclick="addToDisplay('6')">
+        <input type="button" value="*" onclick="addToDisplay('*')"><br>
+        
+        <input type="button" value="1" onclick="addToDisplay('1')">
+        <input type="button" value="2" onclick="addToDisplay('2')">
+        <input type="button" value="3" onclick="addToDisplay('3')">
+        <input type="button" value="-" onclick="addToDisplay('-')"><br>
+        
+        <input type="button" value="0" onclick="addToDisplay('0')">
+        <input type="button" value="." onclick="addToDisplay('.')">
+        <input type="button" value="C" onclick="clearDisplay()"> 
+        <input type="button" value="+" onclick="addToDisplay('+')"><br>
+        
+        
+        <input type="button" value="=" style="margin-left: 30px;width: 200px;" onclick="calculate()">
+    </div>
+ </div>
+
+    <script>
+        function addToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            let display = document.getElementById('display').value;
+            let result = 0;
+
+            if (display.includes('+')) {
+                let operands = display.split('+');
+                result = parseFloat(operands[0]) + parseFloat(operands[1]);
+            } else if (display.includes('-')) {
+                let operands = display.split('-');
+                result = parseFloat(operands[0]) - parseFloat(operands[1]);
+            } else if (display.includes('*')) {
+                let operands = display.split('*');
+                result = parseFloat(operands[0]) * parseFloat(operands[1]);
+            } else if (display.includes('/')) {
+                let operands = display.split('/');
+                result = parseFloat(operands[0]) / parseFloat(operands[1]);
+            } else {
+                result = display; 
+            }
+
+            document.getElementById('display').value = result;
+        }
+    </script>
+</body>
+</html>
